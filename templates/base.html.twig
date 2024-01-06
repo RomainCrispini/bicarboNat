@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		<link
+		rel="icon" href="{{ asset('assets/images/Favicon.png') }}"/>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+		<!-- Flowbite -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
 
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}
-        test base
-        {% endblock %}
-    </body>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body class="flex flex-col h-screen justify-between">
+		<header>
+			{% block header %}
+				{% include "partials/_header.html.twig" %}
+			{% endblock %}
+		</header>
+		<main>
+			<!-- Flowbite -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+			{% block body %}{% endblock %}
+		</main>
+		<footer>
+			{% block footer %}
+				{% include "partials/_footer.html.twig" %}
+			{% endblock %}
+		</footer>
+	</body>
 </html>
