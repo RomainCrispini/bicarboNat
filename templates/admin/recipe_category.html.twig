@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories
+{% endblock %}
+
+{% block body %}
+
+	<div class="mx-auto max-w-7xl px-4 py-4 bg-gray-200 rounded-lg">
+
+		<table class="text-sm text-left rtl:text-right text-gray-500">
+			<thead class="text-xs text-gray-400 uppercase bg-gray-700">
+				<tr>
+					<th scope="col" class="px-6 py-3">
+						<span class="text-red-700">{{ compte }}</span>
+						Catégories
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Description
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Action 1
+					</th>
+					<th scope="col" class="px-6 py-3">
+						Action 2
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for category in categories %}
+					<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+
+						<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+							{{ category.name }}
+						</th>
+						<td class="px-6 py-4">
+							{{ category.description }}
+						</td>
+						<td class="px-6 py-4">
+							<button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-gray-900 text-white px-3 py-2 text-sm font-semibold hover:bg-gray-700" id="menu-button" aria-expanded="true" aria-haspopup="true">
+								Modifier
+							</button>
+						</td>
+						<td class="px-6 py-4">
+							<button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-gray-900 text-white px-3 py-2 text-sm font-semibold hover:bg-gray-700" id="menu-button" aria-expanded="true" aria-haspopup="true">
+								Supprimer
+							</button>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}

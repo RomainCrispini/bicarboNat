@@ -10,6 +10,7 @@
 
 		<!-- Flowbite -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
@@ -19,21 +20,16 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body class="flex flex-col h-screen justify-between">
-		<header>
-			{% block header %}
-				{% include "partials/_header.html.twig" %}
-			{% endblock %}
-		</header>
-		<main>
-			<!-- Flowbite -->
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-			{% block body %}{% endblock %}
-		</main>
-		<footer>
+	<body>
+		{% block header %}
+			{% include "partials/_header.html.twig" %}
+		{% endblock %}
+
+		<main class="flex flex-col h-screen justify-between"> {% block body %}{% endblock %}
+			</main>
+
 			{% block footer %}
 				{% include "partials/_footer.html.twig" %}
 			{% endblock %}
-		</footer>
-	</body>
-</html>
+		</body>
+	</html>
