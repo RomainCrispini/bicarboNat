@@ -20,16 +20,17 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body>
+	<body class="bg-gray-900 mt-9 pt-10 h-full">
 		{% block header %}
 			{% include "partials/_header.html.twig" %}
 		{% endblock %}
 
-		<main class="flex flex-col h-screen justify-center"> {% block body %}{% endblock %}
-			</main>
+		<main>
+			{% block body %}{% endblock %}
+		</main>
 
-			{% block footer %}
-				{% include "partials/_footer.html.twig" %}
-			{% endblock %}
-		</body>
-	</html>
+		{% block footer %}
+			{% include "partials/_footer.html.twig" %}
+		{% endblock %}
+	</body>
+</html>

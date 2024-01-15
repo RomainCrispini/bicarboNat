@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeCategoryRepository::class)]
-#[UniqueEntity('name')]
+#[UniqueEntity('name', message: 'Cette catégorie existe déjà')]
 class RecipeCategory
 {
     #[ORM\Id]
@@ -18,7 +18,7 @@ class RecipeCategory
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[ASSERT\Length(min: 2, max: 50)]
+    #[ASSERT\Length(min: 2, max: 50, minMessage: 'Utilisez au moins yyyy caractères')]
     #[ASSERT\NotBlank()]
     private ?string $name = null;
 

@@ -1,73 +1,110 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Catégories
 {% endblock %}
 
 {% block body %}
 
-	<div
-		class="mx-auto max-w-7xl px-4 py-4 bg-gray-200 rounded-lg">
 
-		<!-- ALERT MESSAGE -->
-		<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-			<strong class="font-bold">Succès</strong>
-			<span class="block sm:inline">La cétégorie a bien été enregistrée</span>
-			<span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-				<svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20">
-					<title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-			</span>
-		</div>
-		<br>
+	<!-- ALERT MESSAGE -->
+	<!-- <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+																																																																																							<strong class="font-bold">Succès</strong>
+																																																																																							<span class="block sm:inline">La cétégorie a bien été enregistrée</span>
+																																																																																							<span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+																																																																																								<svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20">
+																																																																																									<title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+																																																																																							</span>
+																																																																																						</div>
+																																																																																						<br> -->
 
-		<!-- LIST FORM-->
+	<!-- LIST FORM-->
+	<!-- SPLITER LE FORM ET AJOUTER LES MESSAGES DE VALIDDATION ET GERER LE UNIQUEENTITY -->
+		<div class="flex flex-col items-center"> {{ form_start(form_create) }}
 		<table class="text-sm text-left rtl:text-right text-gray-500">
-			<thead class="text-xs text-gray-400 uppercase bg-gray-700">
+			<thead class="text-xs text-gray-400 uppercase bg-gray-700/70">
 				<tr>
-					<th scope="col" class="px-6 py-3">
-						<span class="text-green-400">{{ compte }}</span>
-						Catégories
+					<th scope="col" class="px-6 py-3 rounded-tl-md font-normal">
+						{{ form_label(form_create.name) }}
 					</th>
-					<th scope="col" class="px-6 py-3">
-						Description
+					<th scope="col" class="px-6 py-3 font-normal">
+						{{ form_label(form_create.description) }}
 					</th>
-					<th scope="col" class="px-6 py-3">
-						Action 1
-					</th>
-					<th scope="col" class="px-6 py-3">
-						Action 2
-					</th>
+					<th scope="col" class="px-6 py-3 rounded-tr-md"></th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for category in categories %}
-					<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+				<tr class="bg-gray-800">
+					<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white rounded-bl-md">
+						{{ form_widget(form_create.name, {'attr': {'class': 'bg-gray-700 border border-gray-500 text-gray-400 text-sm rounded-md focus:border-gray-500 focus:ring-gray-500 block w-full p-2.5'}}) }}
 
-						<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-							{{ category.name }}
-						</th>
-						<td class="px-6 py-4">
-							{{ category.description }}
-						</td>
-						<td class="px-6 py-4">
-							<button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-gray-900 text-white px-3 py-2 text-sm font-semibold hover:bg-gray-700" id="menu-button" aria-expanded="true" aria-haspopup="true">
-								Modifier
-								{{ category.id }}
-							</button>
-						</td>
-						<td class="px-6 py-4">
-							<button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-gray-900 text-white px-3 py-2 text-sm font-semibold hover:bg-gray-700" id="menu-button" aria-expanded="true" aria-haspopup="true">
-								Supprimer
-							</button>
-						</td>
-					</tr>
-				{% endfor %}
+						<div class="mt-2 text-xs text-red-600">
+							{{ form_errors(form_create.name) }}
+						</div>
+					</th>
+
+
+					<td class="px-6 py-4">
+						{{ form_widget(form_create.description, { 'attr': {'class': 'bg-gray-700 border border-gray-500 text-gray-400 text-sm rounded-md focus:border-gray-500 focus:ring-gray-500 block w-full p-2.5'}}) }}
+					</td>
+					<td class="px-6 py-4 rounded-br-md">
+						{{ form_row(form_create.submit, {'attr': {'class': 'bg-green-700 text-green-100 hover:bg-green-500 rounded-md px-3 py-2 text-sm font-normal'}}) }}
+					</td>
+				</tr>
 			</tbody>
 		</table>
-		<br>
-
-		<!-- LIST FORM-->
-		<!-- SPLITER LE FORM ET AJOUTER LES MESSAGES DE VALIDDATION ET GERER LE UNIQUERENTITY -->
-		{{ form(form) }}
+		{{ form_end(form_create) }}
 	</div>
+
+
+	<!-- LIST FORM-->
+	<div class="flex flex-col items-center p-3">
+		<form action="">
+			<table class="text-sm text-left rtl:text-right text-gray-500">
+				<thead class="text-xs text-gray-400 uppercase bg-gray-700/70">
+					<tr>
+						<th scope="col" class="px-6 py-3 font-normal rounded-tl-md">
+							Catégories (<span class="text-green-400">{{ compte }}</span>)
+						</th>
+						<th scope="col" class="px-6 py-3 font-normal">
+							Description
+						</th>
+						<th scope="col" class="px-6 py-3"></th>
+						<th scope="col" class="px-6 py-3 rounded-tr-md"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for category in categories %}
+						<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700">
+
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900">
+								<input type="text" name="name" class="bg-gray-700 border border-gray-600 text-gray-400 text-sm rounded-lg focus:border-gray-200 block w-full p-2.5" placeholder="{{ category.name }}">
+							</th>
+							<td class="px-6 py-4">
+								<input type="textarea" name="description" class="bg-gray-700 border border-gray-600 text-gray-400 text-sm rounded-lg focus:border-gray-200 block w-full p-2.5" placeholder="{{ category.description }}">
+							</td>
+							<td class="px-6 py-4">
+
+								<a type="submit" href="{{ path('recipe_category_edit', { id: category.id }) }}" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-amber-700 text-amber-100 px-3 py-2 text-sm hover:bg-amber-800 font-normal">
+									Modifier
+								</a>
+
+							</td>
+							<td class="px-6 py-4">
+
+								<a type="submit" href="{{ path('recipe_category_delete', { id: category.id }) }}" class=" inline-flex w-full justify-center gap-x-1.5 rounded-md bg-red-700 text-red-100 px-3 py-2 text-sm hover:bg-red-800 font-normal">
+									Supprimer
+								</a>
+							</td>
+						</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+		</form>
+	</div>
+
+	<!-- COMPENSE HAUTEUR FOOTER-->
+	<div class="bg-gray-900 size-20 w-full"></div>
 
 {% endblock %}
